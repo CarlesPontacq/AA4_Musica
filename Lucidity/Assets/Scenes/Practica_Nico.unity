@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224585964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8996e71831977bf4c98aea1fa6c9c62f, type: 3}
   m_Name: 
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288531824}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8996e71831977bf4c98aea1fa6c9c62f, type: 3}
   m_Name: 
@@ -3687,7 +3687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571101578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 856f4b71d93f7c7408b2f1816a345608, type: 3}
   m_Name: 
@@ -6178,7 +6178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5773447762240110792, guid: e6850be7ce0ded84f8cef8cf47c20479, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5773447762240110792, guid: e6850be7ce0ded84f8cef8cf47c20479, type: 3}
       propertyPath: thunderEventPath
@@ -8502,20 +8502,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b71140327bb0f459c8d58e6b9a827d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1580745479}
-  walkingTileSound: {fileID: 6418180475301049370, guid: 3f455990ac2bf894a9f9a96cc3377904, type: 2}
-  runningTileSound: {fileID: 6418180475301049370, guid: 76afd31eb78d02644af8e2b09323c99b, type: 2}
-  walkingWoodSound: {fileID: 6418180475301049370, guid: fd9893864024d774b994fcc911b88eb0, type: 2}
-  runningWoodSound: {fileID: 6418180475301049370, guid: 2126ded29e55af34c86a10f88b1a099d, type: 2}
+  footstepEventPath: event:/SFX/Animation/Movement
   inputObserver: {fileID: 1937983206}
   playerRef: {fileID: 1937983211}
+  playerMovement: {fileID: 1937983212}
+  feet: {fileID: 1580745477}
   distance: 2
-  volume: 2
   lm:
     serializedVersion: 2
     m_Bits: 1
-  playerMovement: {fileID: 1937983212}
-  feet: {fileID: 1580745477}
 --- !u!43 &1156340568
 Mesh:
   m_ObjectHideFlags: 0
@@ -9927,11 +9922,6 @@ Light:
 --- !u!4 &1580745477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9205322723579849894, guid: d8d7d2f372568654b88614a37b3e7763, type: 3}
-  m_PrefabInstance: {fileID: 1937983205}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1580745479 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 937172757125034732, guid: d8d7d2f372568654b88614a37b3e7763, type: 3}
   m_PrefabInstance: {fileID: 1937983205}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &1601157614
@@ -11696,7 +11686,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025729638}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8996e71831977bf4c98aea1fa6c9c62f, type: 3}
   m_Name: 
@@ -11969,7 +11959,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041117442}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8996e71831977bf4c98aea1fa6c9c62f, type: 3}
   m_Name: 
