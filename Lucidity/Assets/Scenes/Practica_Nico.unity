@@ -5071,6 +5071,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2546395375769647851, guid: 622603ec22f72a640805115b281fc265, type: 3}
       insertIndex: -1
       addedObject: {fileID: 692290632}
+    - targetCorrespondingSourceObject: {fileID: 2546395375769647851, guid: 622603ec22f72a640805115b281fc265, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 692290640}
     - targetCorrespondingSourceObject: {fileID: 4979783087013082453, guid: 622603ec22f72a640805115b281fc265, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1537921948}
@@ -5239,6 +5242,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!4 &692290637 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1392521289988959345, guid: 622603ec22f72a640805115b281fc265, type: 3}
+  m_PrefabInstance: {fileID: 692290626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &692290640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692290631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8996e71831977bf4c98aea1fa6c9c62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventPath: event:/SFX/Enviroment/TV
+  attachObject: {fileID: 692290637}
 --- !u!1 &695710479
 GameObject:
   m_ObjectHideFlags: 0
