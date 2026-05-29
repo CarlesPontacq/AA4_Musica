@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DoorInteraction : ObjectInteraction
 {
+    [SerializeField] private FMOD_DoorAudio audio;
     [SerializeField] private Transform pivot;
     [SerializeField] private bool startsOpen;
     [SerializeField] private bool startsLocked;
@@ -86,7 +87,7 @@ public class DoorInteraction : ObjectInteraction
 
         if (isOpen == false && playCloseSoundPending && angleToTarget <= closeSoundLeadThreshold)
         {
-            SFXManager.Instance.PlaySpatialSound("closeDoor", soundPosition, 1f);
+            audio.PlayClose(transform.position);
             playCloseSoundPending = false;
         }
 
@@ -160,7 +161,7 @@ public class DoorInteraction : ObjectInteraction
             pivot.localRotation = targetLocalRotation;
         }
 
-        SFXManager.Instance.PlaySpatialSound("openDoor", soundPosition, 1f);
+        audio.PlayOpen(transform.position);
     }
 
     public void Close(bool animate)
@@ -179,7 +180,7 @@ public class DoorInteraction : ObjectInteraction
         {
             hasToApplyRotation = false;
             pivot.localRotation = closedLocalRotation;
-            SFXManager.Instance.PlaySpatialSound("closeDoor", soundPosition, 1f);
+            audio.PlayClose(transform.position);
         }
     }
 
