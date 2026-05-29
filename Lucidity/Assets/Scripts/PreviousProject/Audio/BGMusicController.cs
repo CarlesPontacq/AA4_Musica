@@ -1,64 +1,38 @@
-using System.Collections;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
 
 public class BGMusicController : MonoBehaviour
 {
-    [Header("Sources")]
-    [SerializeField] private AudioSource bass;
-    [SerializeField] private AudioSource instruments;
-    [SerializeField] private AudioSource melody;
+    [Header("FMOD Event")]
+    [SerializeField] private string musicEvent = "event:/Music/LevelMusic";
 
-    [Header("Zones")]
-    [SerializeField] private MusicZoneConfig mainRoom;
-    [SerializeField] private MusicZoneConfig hallway;
+    private EventInstance musicInstance;
 
-    [Header("Fade")]
-    [SerializeField] private float fadeDuration = 1f;
-
-    private Coroutine fadeRoutine;
+    private void Start()
+    {
+        musicInstance = RuntimeManager.CreateInstance(musicEvent);
+        musicInstance.start();
+    }
 
     public void ApplyMainRoom()
     {
-        ApplyConfig(mainRoom);
+        SetLocation(0f);
     }
 
     public void ApplyHallway()
     {
-        ApplyConfig(hallway);
+        SetLocation(1f);
     }
 
-    private void ApplyConfig(MusicZoneConfig config)
+    public void SetLocation(float value)
     {
-        if (config == null) return;
-
-        if (fadeRoutine != null)
-            StopCoroutine(fadeRoutine);
-
-        fadeRoutine = StartCoroutine(FadeTo(config));
+        musicInstance.setParameterByName("Location", value);
     }
 
-    private IEnumerator FadeTo(MusicZoneConfig target)
+    private void OnDestroy()
     {
-        float t = 0f;
-
-        float bStart = bass.volume;
-        float iStart = instruments.volume;
-        float mStart = melody.volume;
-
-        while (t < fadeDuration)
-        {
-            t += Time.deltaTime;
-            float k = t / fadeDuration;
-
-            bass.volume = Mathf.Lerp(bStart, target.bassVolume, k);
-            instruments.volume = Mathf.Lerp(iStart, target.instrumentsVolume, k);
-            melody.volume = Mathf.Lerp(mStart, target.melodyVolume, k);
-
-            yield return null;
-        }
-
-        bass.volume = target.bassVolume;
-        instruments.volume = target.instrumentsVolume;
-        melody.volume = target.melodyVolume;
+        musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicInstance.release();
     }
 }
