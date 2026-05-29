@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3a1de7f6-3a4b-41e7-8c91-0c9425c3cbff}">
+		<property name="assetPath">
+			<value>SFX/Door/openDoor1.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ff363e04-28e0-4e45-a337-2b371f0fd37a}</destination>
+		</relationship>
+	</object>
+</objects>
