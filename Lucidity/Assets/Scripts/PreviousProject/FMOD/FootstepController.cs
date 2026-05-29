@@ -56,7 +56,6 @@ public class FootstepController : MonoBehaviour
         if (!IsMoving()) return;
 
         footstepInstance.start();
-        Debug.Log("Surface: " + currentSurface.ToString() + " - Speed: " + currentSpeed.ToString());
 
         isPlaying = true;
     }
@@ -108,8 +107,8 @@ public class FootstepController : MonoBehaviour
 
     private void UpdateFMODParameters()
     {
-        footstepInstance.setParameterByName("SurfaceType", (float)currentSurface);
-        footstepInstance.setParameterByName("PlayerSpeed", (float)currentSpeed);
+        footstepInstance.setParameterByName("SurfaceType", (float)currentSurface, false);
+        footstepInstance.setParameterByName("PlayerSpeed", (float)currentSpeed, false);
     }
 
     private void StopFootsteps()
