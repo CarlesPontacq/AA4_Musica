@@ -1,55 +1,63 @@
 using FMODUnity;
-using System.IO;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class FootstepController : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioResource walkingTileSound;
-    [SerializeField] private AudioResource runningTileSound;
-    [SerializeField] private AudioResource walkingWoodSound;
-    [SerializeField] private AudioResource runningWoodSound;
+    [Header("FMOD Event")]
+    [FMODUnity.EventRef]
+    [SerializeField] private string footstepEventPath = "event:/Footsteps"; // Ajusta la ruta según tu proyecto
+
+    [Header("References")]
     [SerializeField] private PlayerInputObserver inputObserver;
     [SerializeField] private Rigidbody playerRef;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private Transform feet;
 
-    private const float MinVelocity = 0.1f;
-
-    private float MaterialValue;
-    private bool isRunning;
+    [Header("Raycast Settings")]
     public float distance = 2f;
-    public float volume = 2f;
     public LayerMask lm;
 
-    [SerializeField] PlayerMovement playerMovement;
+    private FMOD.Studio.EventInstance footstepInstance;
+    private const float MinVelocity = 0.1f;
+    private bool isPlaying = false;
 
-    private RaycastHit rh;
+    // Valores para los parámetros labeled
+    private enum SurfaceType
+    {
+        Wood = 0,
+        Tile = 1
+    }
 
-    public Transform feet;
+    private enum PlayerSpeed
+    {
+        Walk = 0,
+        Run = 1
+    }
 
-    Vector3 pos;
-    GameObject go;
+    private SurfaceType currentSurface = SurfaceType.Wood;
+    private PlayerSpeed currentSpeed = PlayerSpeed.Walk;
 
     private void Start()
     {
+        footstepInstance = RuntimeManager.CreateInstance(footstepEventPath);
+        RuntimeManager.AttachInstanceToGameObject(footstepInstance, feet != null ? feet : transform);
     }
 
     private void Update()
     {
+        MaterialCheck();
+        RunCheck();
 
+        UpdateFMODParameters();
     }
 
     void PlayFootstepSound()
     {
-        if (!IsMoving())
-        {
-            StopFootsteps();
-            return;
-        }
+        if (!IsMoving()) return;
 
-        MaterialCheck();
-        RunCheck();
-        audioSource.Play();
+        footstepInstance.start();
+
+        isPlaying = true;
     }
 
     private bool IsMoving()
@@ -61,64 +69,63 @@ public class FootstepController : MonoBehaviour
 
     void MaterialCheck()
     {
+        RaycastHit rh;
         if (Physics.Raycast(transform.position, Vector3.down, out rh, distance, lm))
         {
             switch (rh.collider.tag)
             {
                 case "Tile":
-                    MaterialValue = 1;
+                    currentSurface = SurfaceType.Tile;
                     break;
                 case "Wood":
+                    currentSurface = SurfaceType.Wood;
+                    break;
                 default:
-                    MaterialValue = 0;
+                    currentSurface = SurfaceType.Wood;
                     break;
             }
         }
         else
         {
-            MaterialValue = 0;
+            currentSurface = SurfaceType.Wood;
         }
     }
 
     void RunCheck()
     {
-        isRunning = inputObserver.IsPressingRun;
+        isPlaying = inputObserver.IsPressingRun;
 
-
-        if (!isRunning)
+        if (!isPlaying)
         {
-            switch (MaterialValue)
-            {
-                case 1:
-                    audioSource.resource = walkingTileSound;
-                    break;
-                case 0:
-                default:
-                    audioSource.resource = walkingWoodSound;
-                    break;
-            }
+            currentSpeed = PlayerSpeed.Walk;
         }
         else
         {
-            switch (MaterialValue)
-            {
-                case 1:
-                    audioSource.resource = runningTileSound;
-                    break;
-                case 0:
-                default:
-                    audioSource.resource = runningWoodSound;
-                    break;
-            }
+            currentSpeed = PlayerSpeed.Run;
         }
+    }
+
+    private void UpdateFMODParameters()
+    {
+        footstepInstance.setParameterByName("SurfaceType", (float)currentSurface, false);
+        footstepInstance.setParameterByName("PlayerSpeed", (float)currentSpeed, false);
     }
 
     private void StopFootsteps()
     {
-        if (audioSource.isPlaying)
+        if (footstepInstance.isValid())
         {
-            audioSource.Stop();
-            audioSource.resource = null;
+            footstepInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            isPlaying = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (footstepInstance.isValid())
+        {
+            footstepInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            footstepInstance.release();
         }
     }
 }
