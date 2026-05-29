@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{5a21e5ea-8c99-4e9e-91df-8e579520d14a}">
+		<property name="assetPath">
+			<value>SFX/PlayerSteps/Tile/RunSteps.asset</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ff363e04-28e0-4e45-a337-2b371f0fd37a}</destination>
+		</relationship>
+	</object>
+</objects>

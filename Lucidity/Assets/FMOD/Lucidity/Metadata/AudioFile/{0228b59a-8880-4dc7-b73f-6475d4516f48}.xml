@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0228b59a-8880-4dc7-b73f-6475d4516f48}">
+		<property name="assetPath">
+			<value>SFX/ClosedDoors/RoomAmbience.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>10.176893424036281</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ff363e04-28e0-4e45-a337-2b371f0fd37a}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{9f3d8211-de19-4500-98f1-94cfa1f6ce3a}">
+		<property name="assetPath">
+			<value>SFX/PlayerSteps/Wood/RunWoodSteps.asset.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ff363e04-28e0-4e45-a337-2b371f0fd37a}</destination>
+		</relationship>
+	</object>
+</objects>

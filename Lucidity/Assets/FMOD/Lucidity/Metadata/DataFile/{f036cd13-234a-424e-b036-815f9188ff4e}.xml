@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="DataFile" id="{f036cd13-234a-424e-b036-815f9188ff4e}">
+		<property name="assetPath">
+			<value>SFX/PlayerSteps/Tile/Footsteps_Tile_Run_05.wav.meta</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ff363e04-28e0-4e45-a337-2b371f0fd37a}</destination>
+		</relationship>
+	</object>
+</objects>
